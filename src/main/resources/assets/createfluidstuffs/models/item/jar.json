@@ -1,0 +1,8 @@
+{
+  "parent": "forge:item/default",
+  "loader": "createfluidstuffs:jar_model",
+  "textures": {
+    "base": "createfluidstuffs:item/jar",
+    "fluid": "createfluidstuffs:item/jar_fluid"
+  }
+}

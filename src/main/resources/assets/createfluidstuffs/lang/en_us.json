@@ -1,0 +1,8 @@
+{
+  "itemGroup.createfluidstuffs.base": "Create:Fluid Stuffs",
+  "item.createfluidstuffs.jar": "Andesite jar",
+  "item.createfluidstuffs.bucket": "Andesite bucket",
+  "block.createfluidstuffs.multi_fluid_tank": "Multi Fluids Tank",
+  "createfluidstuffs.tooltips.empty": "Empty",
+  "createfluidstuffs.end":"-----------------------------------"
+}

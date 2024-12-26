@@ -1,0 +1,8 @@
+{
+  "itemGroup.createfluidstuffs.base": "机械动力：流体附加",
+  "item.createfluidstuffs.jar": "安山罐子",
+  "item.createfluidstuffs.bucket": "安山桶",
+  "block.createfluidstuffs.multi_fluid_tank": "多流体储罐",
+  "createfluidstuffs.tooltips.empty": "空的",
+  "createfluidstuffs.end":"-----------------------------------"
+}
