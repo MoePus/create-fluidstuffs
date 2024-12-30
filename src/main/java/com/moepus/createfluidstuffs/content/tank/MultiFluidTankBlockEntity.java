@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import com.moepus.createfluidstuffs.foundation.fluid.SmartMultiFluidTank;
 import com.moepus.createfluidstuffs.api.connectivity.MultiConnectivityHandler;
 import com.simibubi.create.content.equipment.goggles.IHaveGoggleInformation;
+import com.simibubi.create.content.fluids.transfer.GenericItemEmptying;
 import com.simibubi.create.foundation.blockEntity.IMultiBlockEntityContainer;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
@@ -20,6 +21,10 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -269,6 +274,23 @@ public class MultiFluidTankBlockEntity extends SmartBlockEntity implements IHave
         if (be == null)
             return;
         be.setWindows(!be.window);
+    }
+
+    public InteractionResult onCreativeInsertFluid(Player player, InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+        FluidStack fluidInItem = GenericItemEmptying.emptyItem(this.level, stack, true)
+                .getFirst();
+        if (fluidInItem.isEmpty())
+            return InteractionResult.PASS;
+
+        LazyOptional<IFluidHandler> tankCapability = this.getCapability(ForgeCapabilities.FLUID_HANDLER);
+        if(!tankCapability.isPresent())
+            return InteractionResult.PASS;
+
+        IFluidHandler tank = tankCapability.orElse(null);
+        tank.fill(fluidInItem, FluidAction.EXECUTE);
+
+        return InteractionResult.SUCCESS;
     }
 
     public void sendDataImmediately() {
