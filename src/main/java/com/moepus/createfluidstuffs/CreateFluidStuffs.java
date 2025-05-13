@@ -15,9 +15,10 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 import plus.dragons.createdragonlib.init.SafeRegistrate;
 import plus.dragons.createdragonlib.lang.Lang;
-import com.simibubi.create.foundation.utility.Components;
+import net.minecraft.network.chat.Component;
 
-import static com.simibubi.create.foundation.utility.Lang.resolveBuilders;
+import static net.createmod.catnip.lang.LangBuilder.resolveBuilders;
+
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(CreateFluidStuffs.ID)
@@ -50,6 +51,6 @@ public class CreateFluidStuffs {
         return new ResourceLocation(ID, path);
     }
     public static MutableComponent translateDirect(String key, Object... args) {
-        return Components.translatable(ID + "." + key, resolveBuilders(args));
+        return Component.translatable(ID + "." + key, resolveBuilders(args));
     }
 }

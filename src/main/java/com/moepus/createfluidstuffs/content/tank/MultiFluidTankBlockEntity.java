@@ -7,15 +7,14 @@ import javax.annotation.Nullable;
 
 import com.moepus.createfluidstuffs.foundation.fluid.SmartMultiFluidTank;
 import com.moepus.createfluidstuffs.api.connectivity.MultiConnectivityHandler;
-import com.simibubi.create.content.equipment.goggles.IHaveGoggleInformation;
+import com.simibubi.create.api.equipment.goggles.IHaveGoggleInformation;
 import com.simibubi.create.content.fluids.transfer.GenericItemEmptying;
 import com.simibubi.create.foundation.blockEntity.IMultiBlockEntityContainer;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
-import com.simibubi.create.foundation.utility.animation.LerpedFloat;
-import com.simibubi.create.foundation.utility.animation.LerpedFloat.Chaser;
 import com.simibubi.create.infrastructure.config.AllConfigs;
 
+import net.createmod.catnip.animation.LerpedFloat;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -125,7 +124,7 @@ public class MultiFluidTankBlockEntity extends SmartBlockEntity implements IHave
             return;
 
         for (int i = 0; i < tanks; i++) {
-            fluidLevel[i].chase(getFillState(i), .5f, Chaser.EXP);
+            fluidLevel[i].chase(getFillState(i), .5f, LerpedFloat.Chaser.EXP);
         }
     }
 
@@ -436,7 +435,7 @@ public class MultiFluidTankBlockEntity extends SmartBlockEntity implements IHave
 
         if (compound.contains("LazySync") && fluidLevel != null)
             for (int i = 0; i < tanks; i++) {
-                fluidLevel[i].chase(fluidLevel[i].getChaseTarget(), 0.125f, Chaser.EXP);
+                fluidLevel[i].chase(fluidLevel[i].getChaseTarget(), 0.125f, LerpedFloat.Chaser.EXP);
             }
     }
 
