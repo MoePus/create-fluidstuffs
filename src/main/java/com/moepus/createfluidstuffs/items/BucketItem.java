@@ -1,7 +1,7 @@
 package com.moepus.createfluidstuffs.items;
 
-import com.simibubi.create.foundation.utility.Components;
-import com.simibubi.create.foundation.utility.Lang;
+import com.simibubi.create.foundation.utility.CreateLang;
+import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -49,10 +49,10 @@ public class BucketItem extends Item {
         }
         FluidStack fluid = capability.orElse(null).getFluidInTank(0);
         if (fluid.isEmpty()) {
-            tooltip.add(Components.translatable("createfluidstuffs.tooltips.empty").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.translatable("createfluidstuffs.tooltips.empty").withStyle(ChatFormatting.GRAY));
         } else {
-            Lang.fluidName(fluid).style(ChatFormatting.GOLD).addTo(tooltip);
-            tooltip.add(Components.literal(Integer.toString(fluid.getAmount()) + "mB").withStyle(ChatFormatting.WHITE));
+            CreateLang.fluidName(fluid).style(ChatFormatting.GOLD).addTo(tooltip);
+            tooltip.add(Component.literal(Integer.toString(fluid.getAmount()) + "mB").withStyle(ChatFormatting.WHITE));
         }
     }
 

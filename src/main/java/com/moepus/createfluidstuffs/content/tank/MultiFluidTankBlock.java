@@ -6,7 +6,7 @@ import com.simibubi.create.content.equipment.wrench.IWrenchable;
 import com.simibubi.create.foundation.advancement.AdvancementBehaviour;
 import com.simibubi.create.foundation.block.IBE;
 import com.simibubi.create.foundation.blockEntity.ComparatorUtil;
-import com.simibubi.create.foundation.utility.Lang;
+import com.simibubi.create.foundation.utility.CreateLang;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -199,7 +199,7 @@ public class MultiFluidTankBlock extends Block implements IWrenchable, IBE<Multi
 
         @Override
         public String getSerializedName() {
-            return Lang.asId(name());
+            return CreateLang.asId(name());
         }
     }
 
