@@ -248,8 +248,7 @@ public class MultiFluidTankBlockEntity extends SmartBlockEntity implements IHave
         if (level.isClientSide)
             return;
         updateConnectivity = true;
-        if (!keepFluids)
-            applyFluidTankSize(1);
+        applyFluidTankSize(1);
         controller = null;
         width = 1;
         height = 1;
