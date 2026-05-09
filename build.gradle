@@ -198,7 +198,9 @@ dependencies {
         jarJar.pin(it, project.create_dragon_lib_version)
     }
 
-    implementation fg.deobf("plus.dragons.createdragonlib:create_dragon_lib-${minecraft_version}:${create_dragon_lib_version}")
+    implementation(fg.deobf("plus.dragons.createdragonlib:create_dragon_lib-${minecraft_version}:${create_dragon_lib_version}") {
+        transitive = false
+    })
 
 }
 

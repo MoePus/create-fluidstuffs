@@ -117,7 +117,30 @@ public class SmartMultiFluidTank implements IFluidHandler, IFluidTank {
 
     @Override
     public int getTankCapacity(int tank) {
-        return getCapacity();
+        if (tank < 0 || tank >= getTanks()) {
+            return 0;
+        }
+
+        int amountInTank = multi_fluid[tank].getAmount();
+        if (!multi_fluid[tank].isEmpty()) {
+            return amountInTank;
+        }
+
+        int firstEmptyTank = -1;
+        for (int i = 0; i < getTanks(); i++) {
+            if (multi_fluid[i].isEmpty()) {
+                firstEmptyTank = i;
+                break;
+            }
+        }
+
+        // Report all remaining free capacity on only one empty slot so total reported
+        // capacity stays equal to the real shared tank capacity.
+        if (firstEmptyTank == tank) {
+            return getSpace();
+        }
+
+        return 0;
     }
 
     @Override
@@ -148,8 +171,8 @@ public class SmartMultiFluidTank implements IFluidHandler, IFluidTank {
             return 0;
 
         OptionalInt target_tank_opt = getFirstAvailableTank(resource);
+        if (target_tank_opt.isEmpty()) return 0;
         if (action.simulate()) {
-            if (target_tank_opt.isEmpty()) return 0;
             return Math.min(getSpace(), resource.getAmount());
         }
 
